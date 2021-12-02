@@ -333,15 +333,7 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	 * */
 
 
-/*
-	//first layer wieghts are 2x3 because they are connecting the inputs to the hidden layer.
-	// 3 connections (wieghts) leaving each input neuron
-	double wieghts[2][3] = {
-				 {1.2, 0.3, 2.4},
-				 {0.5, 1.1, 0.1},
 
-					};     
-*/
 
 	/*
 	 * Nuerons in hidden layer 1
@@ -374,8 +366,8 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 
 
 
-
-
+	std::cout << '\n' << '\n'  << "End Hidden Layer Parameterization" << '\n';
+	std::cout << '\n' << "Begin Output Layer Parameterization" << '\n';
 
 
 
@@ -397,17 +389,6 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	 * */
 
 
-/*	
-      
-        //3 hidden layer nodes connect to 1 output node, therefore there are 3x1 synapses/wieghts
-	double wieghts2[3][1]= {
-		                {1.3},
-				{0.2},
-			        {1.4}
-	                              };
-
-*/
-
 
 
 
@@ -427,6 +408,10 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	
 
 	
+	std::cout << '\n'  << "End Output Layer Parameterization" << '\n';
+        std::cout << '\n' << '\n' << '\n' << '\n' << "BEGIN FORWARD PROPOGATION" << '\n' << '\n' << '\n' << '\n';
+
+
 	
 	/*
 	 * Forward Propagation
@@ -435,6 +420,9 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	 * forward pass layer 1
 	 *
 	 * */
+
+	std::cout << '\n' << '\n' << "Forward Pass Layer 1" << '\n' << '\n' << '\n' << '\n';
+
 
 	for(int i = 0; i < 3; i++){
            std::cout << '\n';
@@ -501,7 +489,7 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	std::cout << '\n';
         std::cout << '\n';
         std::cout << '\n';
-        std::cout << "Output Nueron " << '\n';
+        std::cout << "Output Nueron " << '\n' << '\n';
         std::cout << '\n';
 
 
@@ -513,6 +501,10 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	 * forward pass to the output layer
 	 *
 	 **/
+
+	
+	std::cout << '\n' << '\n' << '\n' << '\n' << "Forward Pass Layer 2 (output layer)" << '\n' << '\n' << '\n' << '\n'; 
+
 	
 	for(int i = 0; i < 3; i++){
             
@@ -565,7 +557,7 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
         std::cout << '\n'; 
 	std::cout << '\n';
 	std::cout << '\n';
-	std::cout << "END OF FORWARD PROPOGATION" << '\n';
+	std::cout << "END OF FORWARD PROPOGATION" << '\n' << '\n';
         std::cout << '\n';
 	std::cout << '\n';
 
@@ -589,14 +581,14 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	* */
 
 
-/*	
+	
 	std::cout << '\n';
         std::cout << '\n';
         std::cout << '\n';
-        std::cout << "BEGINNING BACKPROPOGATION" << '\n';
+        std::cout << "BEGINNING BACKPROPOGATION" << '\n' << '\n';
         std::cout << '\n';
         std::cout << '\n';
-*/
+
 
 	
 	/*
@@ -611,11 +603,11 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 
 
 
-    /*	
-       std::cout << '\n';
+   
+       std::cout << '\n' << '\n';
        std::cout << "Output Layer Backpropigation" << '\n';
-       std::cout << '\n';
-       */
+       std::cout << '\n' << '\n';
+       
 
        
 
@@ -625,11 +617,7 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
        //After being fed into function
        //this should hold del C / del yHat
        double negYminYhat[3][1];
-	      /* = {
-	                    {0},
-			    {0},
-			    {0}
-       				};*/
+
 
 
        //del C / del W2 =  del C/del yHat * del yHat/del W2; 
@@ -666,13 +654,7 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
       
        double outputLayerBackpropError[3][1];
       
-      /* = {
-       
-	      				 {0},
-					 {0},
-					 {0},
-       					
-       				             };*/
+     
 
 
 
@@ -917,59 +899,99 @@ int main(){
 
 
 
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 1 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
 
     NeuralNet(wieghts, wieghts2, updateWieghts, updateWieghts2);
+
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 2 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
+
+    NeuralNet(updateWieghts, updateWieghts2, wieghts, wieghts2);
+   
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 3 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
+
+    NeuralNet(wieghts, wieghts2, updateWieghts, updateWieghts2);
+
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 4 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
 
     NeuralNet(updateWieghts, updateWieghts2, wieghts, wieghts2);
 
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 5 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
+
     NeuralNet(wieghts, wieghts2, updateWieghts, updateWieghts2);
+
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 6 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
 
     NeuralNet(updateWieghts, updateWieghts2, wieghts, wieghts2);
 
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 7 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
+
     NeuralNet(wieghts, wieghts2, updateWieghts, updateWieghts2);
+
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 8 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
 
     NeuralNet(updateWieghts, updateWieghts2, wieghts, wieghts2);
 
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 9 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
+
     NeuralNet(wieghts, wieghts2, updateWieghts, updateWieghts2);
+
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 10 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
 
     NeuralNet(updateWieghts, updateWieghts2, wieghts, wieghts2);
 
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 11 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
+
     NeuralNet(wieghts, wieghts2, updateWieghts, updateWieghts2);
+
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 12 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
 
     NeuralNet(updateWieghts, updateWieghts2, wieghts, wieghts2);
 
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 13 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
+
     NeuralNet(wieghts, wieghts2, updateWieghts, updateWieghts2);
+
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 14 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
 
     NeuralNet(updateWieghts, updateWieghts2, wieghts, wieghts2);
 
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 15 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
+
     NeuralNet(wieghts, wieghts2, updateWieghts, updateWieghts2);
+
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 16 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
 
     NeuralNet(updateWieghts, updateWieghts2, wieghts, wieghts2);
 
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 17 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
+
     NeuralNet(wieghts, wieghts2, updateWieghts, updateWieghts2);
+
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 18 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
 
     NeuralNet(updateWieghts, updateWieghts2, wieghts, wieghts2);
 
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 19 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
+
     NeuralNet(wieghts, wieghts2, updateWieghts, updateWieghts2);
+
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 20 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
 
     NeuralNet(updateWieghts, updateWieghts2, wieghts, wieghts2);
 
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 21 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
+
     NeuralNet(wieghts, wieghts2, updateWieghts, updateWieghts2);
+
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 22 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
 
     NeuralNet(updateWieghts, updateWieghts2, wieghts, wieghts2);
 
-    NeuralNet(wieghts, wieghts2, updateWieghts, updateWieghts2);
-
-    NeuralNet(updateWieghts, updateWieghts2, wieghts, wieghts2);
+    std::cout << '\n' << '\n' << '\n' << '\n' << "####PASS 23 THROUGH MODEL####" << '\n' << '\n' << '\n' << '\n';
 
     NeuralNet(wieghts, wieghts2, updateWieghts, updateWieghts2);
 
-   /* for(int i = 0; i < 2; i++){
-       for(int j = 0; j < 3; j++){
-          std::cout << updateWieghts[i][j] <<  " ";}
-       std::cout << '\n';
-    }*/
-
+    
 
 
 
