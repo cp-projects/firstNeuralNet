@@ -332,16 +332,16 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	 *
 	 * */
 
-/*
 
+/*
 	//first layer wieghts are 2x3 because they are connecting the inputs to the hidden layer.
 	// 3 connections (wieghts) leaving each input neuron
 	double wieghts[2][3] = {
 				 {1.2, 0.3, 2.4},
 				 {0.5, 1.1, 0.1},
 
-					};     */
-
+					};     
+*/
 
 	/*
 	 * Nuerons in hidden layer 1
@@ -397,16 +397,16 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	 * */
 
 
-	
-      /*
+/*	
+      
         //3 hidden layer nodes connect to 1 output node, therefore there are 3x1 synapses/wieghts
 	double wieghts2[3][1]= {
 		                {1.3},
 				{0.2},
 			        {1.4}
-	                              };*/
+	                              };
 
-
+*/
 
 
 
@@ -437,8 +437,8 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	 * */
 
 	for(int i = 0; i < 3; i++){
-          // std::cout << '\n';
-          // std::cout << "Hidden Nueron " << i+1 << '\n';
+           std::cout << '\n';
+           std::cout << "Hidden Nueron " << i+1 << '\n';
 	  
 
 	   for(int j = 0; j < 3; j++){
@@ -446,7 +446,7 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	       double product = 0;
 	       for(int v = 0; v < 2; v++){
 	       
-	         //(1) Z2 = X*W1  
+	        //(1) Z2 = X*W1  
                 product += X[i][v] * wieghts[v][j] + biases[i][0];
 	           
 	  
@@ -455,55 +455,55 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	   }
          
 	   Z2[i][j] = product;
-	  // std::cout << product << "    ";	
+	   std::cout << product << "    ";	
 	   }
         
-	  // std::cout << '\n';
+	   std::cout << '\n';
 	}
 
 
 
 	//print z2
-	//std::cout << '\n';
-	//std::cout << '\n';
-	//std::cout << "Z2" << '\n';
+	std::cout << '\n';
+	std::cout << '\n';
+	std::cout << "Z2" << '\n';
 	for(int i = 0; i < 3; i++){
 
 	    for(int j = 0; j < 3; j++){
 
-	   //std::cout << Z2[i][j] << " ";
+	    std::cout << Z2[i][j] << " ";
 
 	    //(2) a2 = f(Z2)
 	    activation2[i][j] = sigmoid(Z2[i][j]);}
 	       
-	   // std::cout << '\n';
+	    std::cout << '\n';
 	
 	}
 
 
 
 
-      /*  //print a2
+        //print a2
 
-	//std::cout << '\n';
-        //std::cout << '\n';
-       // std::cout << "a2" << '\n';	
+	std::cout << '\n';
+        std::cout << '\n';
+        std::cout << "a2" << '\n';	
         for(int i = 0; i < 3; i++){
 
             for(int j = 0; j < 3; j++){
 
             std::cout << activation2[i][j] << " ";}
 
-            std::cout << '\n';} */
+            std::cout << '\n';}
 
-/*
+
 
 	std::cout << '\n';
         std::cout << '\n';
         std::cout << '\n';
         std::cout << "Output Nueron " << '\n';
         std::cout << '\n';
-*/
+
 
 	/*
 	 *  Layer 2 forward Propagation
@@ -531,16 +531,16 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	
         
         //print z3
-        //std::cout << '\n';
-        //std::cout << "Z3" << '\n';	
+        std::cout << '\n';
+        std::cout << "Z3" << '\n';	
        	for(int i = 0; i < 3; i++){
 	    
 	   //(4) Yhat = a3 = f(Z3)
            yHat[i][0] = sigmoid(Z3[i][0]);
-	   //std::cout <<  Z3[i][0] << " ";
+	   std::cout <<  Z3[i][0] << " ";
 	}
 
- /*      
+       
 
         //print yHat/outputs
 	std::cout << '\n';
@@ -551,7 +551,7 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 
             std::cout <<  yHat[i][0] << " ";}
          
-*/
+
 
 
 	/*
@@ -565,7 +565,7 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
         std::cout << '\n'; 
 	std::cout << '\n';
 	std::cout << '\n';
-	//std::cout << "END OF FORWARD PROPOGATION" << '\n';
+	std::cout << "END OF FORWARD PROPOGATION" << '\n';
         std::cout << '\n';
 	std::cout << '\n';
 
@@ -739,20 +739,20 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 
 
 
-/*
+
 	std::cout << '\n';
 	std::cout << '\n';
         std::cout << "END Output layer to Hidden Layer Backpropagaton"  <<'\n';
         std::cout << "BEGIN Hidden Layer to Input Layer Backpropagation" << '\n';
         std::cout << '\n';
-        std::cout << '\n'; */
+        std::cout << '\n';
 
 
 
     
 	double primeActivez2[3][3];
 	
-       //applySigmoidPrime(Z2, primeActivez2);
+       applySigmoidPrime(Z2, primeActivez2);
 
 
        //f'(Z2) change in activation times Z2
@@ -789,10 +789,10 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	delta2(outputLayerBp, W2Transpose, primeActivez2, backpropErrorDelta2);
 
 
-	/*
+	
 	for(int i = 0; i < 3; i++){
 	   std::cout << backpropErrorDelta2[i][0] << '\n';}
-	*/
+	
 
 
 	//transpose X
@@ -803,8 +803,8 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 	double finalBackpropLayerOne [2][1];
 	linearTransform(XT, backpropErrorDelta2, finalBackpropLayerOne);
 
-         /*for(int i = 0; i < 2; i++){
-	     std::cout << finalBackpropLayerOne[i][0] << '\n';} */
+         for(int i = 0; i < 2; i++){
+	     std::cout << finalBackpropLayerOne[i][0] << '\n';}
        
 
 
@@ -823,12 +823,12 @@ int NeuralNet(double (&wieghts)[w1R][w1C], double (&wieghts2)[w2R][w2C], double 
 
 
 
-        //std::cout << '\n';
-       // std::cout << '\n';
+        std::cout << '\n';
+        std::cout << '\n';
         std::cout << '\n';
         std::cout << "Gradient decent" << '\n';
         std::cout << '\n';
-       // std::cout << '\n';
+        std::cout << '\n';
 
 
 
@@ -895,10 +895,9 @@ int main(){
                                  {1.2, 0.3, 2.4},
                                  {0.5, 1.1, 0.1},
 
-                                        };
-    
+                                        };    
 
-    
+   
      //3 hidden layer nodes connect to 1 output node, therefore there are 3x1 synapses/wieghts
         double wieghts2[3][1]= {
                                 {1.3},
